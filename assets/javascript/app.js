@@ -39,10 +39,11 @@ var trivia = {
 
 //Global Variables
 var timer;
-var currentQuestion;
+var currentQuestion = trivia.q1.question;
 var timeStarted = false;
 var time = 10;
 
+$("#question").html(currentQuestion);
 $("#image").html(trivia.q2.correctGif);
 //10 second timer function
 function tenTimer() {
