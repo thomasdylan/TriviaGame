@@ -1,14 +1,16 @@
 //Trivia object holds questions and answer.
 var trivia = {
     q1: {
-        question: "Which player has never won a major?",
-        options: ["Magisk", "Tarik", "Simp1e", "GeT_RighT"],
-        answer: "Simp1e"
+        question: "Who is the toughest man in Letterkenny?",
+        options: ["Wayne", "McMurray", "Stewart", "Reilly"],
+        answer: "Wayne",
+        
     },
     q2: {
-        question: "",
-        options: [],
-        answer: ""
+        question: "What is the name of Pastor Glen's Christian post-alt rock emo super band",
+        options: ["The Salty Treats", "My Tattered Journal"],
+        answer: "My Tattered Journal",
+        correctGif: '<img src= https://media.giphy.com/media/VFeWMIKOJzEvv6EZEw/giphy.gif>'
     },
     q3: {
         question: "",
@@ -27,12 +29,15 @@ var trivia = {
     }
 };
 
+//Global Variables
 var timer;
 var currentQuestion;
 
-
-
-
+$("#image").html(trivia.q1.correctGif);
+//10 second timer function
+function tenTimer() {
+    
+}
 
 
 
