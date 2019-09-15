@@ -55,7 +55,7 @@ function tenTimer() {
 
 function count() {
     time--;
-    $("#timer").html(time);
+    $("#timer").html("Time Remaining: " + time);
     if (time === 0) {
         answeredQuestion();
         clearInterval(timer);
@@ -76,6 +76,7 @@ function nextQuestion() {
     $("#choices").empty();
     $("#image").empty();
     $("#timer").empty();
+    $("#result").empty();
     
     if(questionCounter >= currentQuestion.length) {
         $("#question").remove();
@@ -84,7 +85,7 @@ function nextQuestion() {
         gameOver();
     } else {
         $("#question").html(currentQuestion[questionCounter].question);
-        $("#timer").html(time);
+        $("#timer").html("Time Remaining: " + time);
         console.log(currentQuestion[questionCounter].answer);
         trivia();
         tenTimer();
@@ -102,14 +103,16 @@ function answeredQuestion() {
 
 function trivia() {  
     for (var i = 0; i < currentQuestion[questionCounter].options.length; i++) {
-        $("#choices").append("<div class='card col-xs-10 col-md-8 m-auto text-center'> <div class = 'card-body'id= option" + i + ">" + currentQuestion[questionCounter].options[i] + "</div></div>");
+        $("#choices").append("<div class='card col-xs-10 col-md-8 mx-auto mt-2 py-3 text-center' id= option" + i + ">" + currentQuestion[questionCounter].options[i] + "</div>");
     };
     $("#option0").click(function () {
         if ($("#option0").text() === currentQuestion[questionCounter].answer) {
             score++;
             $("#image").html(currentQuestion[questionCounter].correctGif);
+            $("#result").text("Correct!");
         } else {
             $("#image").html(currentQuestion[questionCounter].incorrectGif);
+            $("#result").text("Incorrect");
         }
         answeredQuestion();
     });
@@ -117,8 +120,10 @@ function trivia() {
         if ($("#option1").text() === currentQuestion[questionCounter].answer) {
             score++;
             $("#image").html(currentQuestion[questionCounter].correctGif);
+            $("#result").text("Correct!");
         } else {
             $("#image").html(currentQuestion[questionCounter].incorrectGif);
+            $("#result").text("Incorrect");
         }
         answeredQuestion();
     });
@@ -126,8 +131,10 @@ function trivia() {
         if ($("#option2").text() === currentQuestion[questionCounter].answer) {
             score++;
             $("#image").html(currentQuestion[questionCounter].correctGif);
+            $("#result").text("Correct!");
         } else {
             $("#image").html(currentQuestion[questionCounter].incorrectGif);
+            $("#result").text("Incorrect");
         }
         answeredQuestion();
     });
@@ -135,8 +142,10 @@ function trivia() {
         if ($("#option3").text() === currentQuestion[questionCounter].answer) {
             score++;
             $("#image").html(currentQuestion[questionCounter].correctGif);
+            $("#result").text("Correct!");
         } else {
             $("#image").html(currentQuestion[questionCounter].incorrectGif);
+            $("#result").text("Incorrect");
         }
         answeredQuestion();
     });
@@ -144,7 +153,7 @@ function trivia() {
 
 function gameOver() {
     $(".container").empty();
-    $(".container").html("<div class='card col-xs-10 col-md-8 m-auto text-center' id='finalScore'>" + "<h1>Your Score is " + score  + "!</h1>" + "</div>");
+    $(".container").html("<div class='card mx-xs-10 mx-md-8 mx-auto mt-8 h-80 w-80 text-center' id='finalScore'>" + "<h1>Your Score is " + score  + "/5!</h1>" + "</div>");
 }
 
 trivia();
