@@ -47,13 +47,13 @@ var score = 0;
 
 $("document").ready(function() {
     var audio = new Audio('../../assets/audio/LetterkennyTheme.mp3');
-    audio.play();
     var gameStarted = false;
     $(".card").hide();
     if(gameStarted === false) {
         gameStarted = true;
         $("#new").html("<h1 class='open'>Letterkenny Trivia</h1>" + "<div class='card mx-xs-10 mx-md-8 mx-auto mt-8 h-80 w-80 text-center' id='finalScore'>" + "<h1>Click here to start!</h1>" + "</div>");
         $("#new").click(function() {
+            audio.play();
             $("#new").remove();
             $(".card").show();
             $("#question").html(currentQuestion[0].question);
