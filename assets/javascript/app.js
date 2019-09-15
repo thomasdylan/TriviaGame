@@ -177,6 +177,6 @@ function trivia() {
 //Displays the final score 
 function gameOver() {
     $(".container").empty();
-    $(".container").html("<div class='card mx-xs-10 mx-md-8 mx-auto mt-8 h-80 w-80 text-center' id='finalScore'>" + "<h1>Letterkenny Trivia</h1>" + "<h1>Your Score is " + score  + "/5!</h1>" + "</div>");
+    $(".container").html("<h1 class='open'>Letterkenny Trivia</h1>" + "<div class='card mx-xs-10 mx-md-8 mx-auto mt-8 h-80 w-80 text-center' id='finalScore'>" + "<h1>Your Score is " + score  + "/5!</h1>" + "</div>");
 }
 
