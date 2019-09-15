@@ -45,7 +45,7 @@ var score = 0;
 
 $("#question").html(currentQuestion[0].question);
 
-//10 second timer function
+//10 second timer function checks if time is running already and sets the interval for count.
 function tenTimer() {
     if (!timeStarted) {
         timeStarted = true;
@@ -53,6 +53,7 @@ function tenTimer() {
     }
 }
 
+//Counts down the timer and displays info if clock runs out.
 function count() {
     time--;
     $("#timer").html("Time Remaining: " + time);
@@ -65,12 +66,14 @@ function count() {
     }
 }
 
+//Resets the timer.
 function reset() {
     clearInterval(timer);
     timeStarted = false;
     time = 10;
 }
 
+//Clears the old question and populates the new one if there are any more questions left in the array.
 function nextQuestion() {
     questionCounter++;
     $("#choices").empty();
@@ -93,6 +96,7 @@ function nextQuestion() {
     
 }
 
+//If they selected an answer they aren't able to select another answer till the next question shows up.
 function answeredQuestion() {
     reset();
     $("#choices").empty();
@@ -101,6 +105,7 @@ function answeredQuestion() {
     }, 5000);
 }
 
+//The meat and potatoes. Actually its more like the spaghetti.  Sets a click event for every option and creates a div for each.  This is the one area that really needs to be refactored.
 function trivia() {  
     for (var i = 0; i < currentQuestion[questionCounter].options.length; i++) {
         $("#choices").append("<div class='card col-xs-10 col-md-8 mx-auto mt-2 py-3 text-center' id= option" + i + ">" + currentQuestion[questionCounter].options[i] + "</div>");
@@ -151,6 +156,7 @@ function trivia() {
     });
 }
 
+//Displays the final score 
 function gameOver() {
     $(".container").empty();
     $(".container").html("<div class='card mx-xs-10 mx-md-8 mx-auto mt-8 h-80 w-80 text-center' id='finalScore'>" + "<h1>Your Score is " + score  + "/5!</h1>" + "</div>");
