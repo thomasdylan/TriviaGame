@@ -43,7 +43,25 @@ var timeStarted = false;
 var time = 10;
 var score = 0;
 
-$("#question").html(currentQuestion[0].question);
+
+
+$("document").ready(function() {
+    var audio = new Audio('../../assets/audio/LetterkennyTheme.mp3');
+    audio.play();
+    var gameStarted = false;
+    $(".card").hide();
+    if(gameStarted === false) {
+        gameStarted = true;
+        $("#new").html("<h1 class='open'>Letterkenny Trivia</h1>" + "<div class='card mx-xs-10 mx-md-8 mx-auto mt-8 h-80 w-80 text-center' id='finalScore'>" + "<h1>Click here to start!</h1>" + "</div>");
+        $("#new").click(function() {
+            $("#new").remove();
+            $(".card").show();
+            $("#question").html(currentQuestion[0].question);
+            trivia();
+            tenTimer();
+        })
+    };
+})
 
 //10 second timer function checks if time is running already and sets the interval for count.
 function tenTimer() {
@@ -159,8 +177,6 @@ function trivia() {
 //Displays the final score 
 function gameOver() {
     $(".container").empty();
-    $(".container").html("<div class='card mx-xs-10 mx-md-8 mx-auto mt-8 h-80 w-80 text-center' id='finalScore'>" + "<h1>Your Score is " + score  + "/5!</h1>" + "</div>");
+    $(".container").html("<div class='card mx-xs-10 mx-md-8 mx-auto mt-8 h-80 w-80 text-center' id='finalScore'>" + "<h1>Letterkenny Trivia</h1>" + "<h1>Your Score is " + score  + "/5!</h1>" + "</div>");
 }
 
-trivia();
-tenTimer();

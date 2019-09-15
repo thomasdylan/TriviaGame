@@ -2,9 +2,21 @@ body {
     font-family: 'Squada One', cursive;
     font-size: 36px;
     background-image: url('../images/letterkenny-background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     width: auto;
     height: auto;
     padding-top: 2%;
+}
+
+.open {
+    background: lightgrey;
+    padding: 1% 0%;
+    border-radius: 50px;
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+
 }
 
 #image {
