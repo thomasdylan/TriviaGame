@@ -63,29 +63,6 @@ $("document").ready(function () {
     };
 })
 
-function restart() {
-    timer;
-    currentQuestion = [q1, q2, q3, q4, q5];
-    questionCounter = 0;
-    timeStarted = false;
-    time = 10;
-    score = 0;
-    gameStarted = false;
-    $(".card").hide();
-    if (gameStarted === false) {
-        gameStarted = true;
-        $("#new").html("<h1 class='open'>Letterkenny Trivia</h1>" + "<div class='card mx-xs-10 mx-md-8 mx-auto mt-8 h-80 w-80 text-center' id='finalScore'>" + "<h1>Click here to start!</h1>" + "</div>");
-        $("#new").click(function () {
-            audio.play();
-            $("#new").remove();
-            $(".card").show();
-            $("#question").html(currentQuestion[0].question);
-            trivia();
-            tenTimer();
-        })
-    };
-}
-
 //10 second timer function checks if time is running already and sets the interval for count.
 function tenTimer() {
     if (!timeStarted) {
