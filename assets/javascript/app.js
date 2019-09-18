@@ -1,3 +1,11 @@
+/*
+    This code is far from clean or optimized.  
+    I am refactoring this, but that may not be done in time.  
+    The code works as intended, it just has a lot of extra functions acting as duct tape.
+    I tried to use single lines of jquery for dom manipulation as much as possible just to test myself, 
+      but understand that it is not very clean and there is more efficient ways of handling it.
+*/
+
 //Trivia questions with answers held in objects
 var q1 = {
     question: "Who is the toughest man in Letterkenny?",
@@ -44,24 +52,35 @@ var time = 10;
 var score = 0;
 
 
-
-$("document").ready(function () {
-    var audio = new Audio('../../assets/audio/LetterkennyTheme.mp3');
-    var gameStarted = false;
-    $(".card").hide();
-    if (gameStarted === false) {
-        gameStarted = true;
-        $("#new").html("<h1 class='open'>Letterkenny Trivia</h1>" + "<div class='card mx-xs-10 mx-md-8 mx-auto mt-8 h-80 w-80 text-center' id='finalScore'>" + "<h1>Click here to start!</h1>" + "</div>");
-        $("#new").click(function () {
-            audio.play();
-            $("#new").remove();
-            $(".card").show();
-            $("#question").html(currentQuestion[0].question);
-            trivia();
-            tenTimer();
-        })
-    };
-})
+function startGame() {
+    timer;
+    currentQuestion = [q1, q2, q3, q4, q5];
+    questionCounter = 0;
+    timeStarted = false;
+    time = 10;
+    score = 0;
+    $("document").ready(function () {
+        var audio = new Audio('../../assets/audio/LetterkennyTheme.mp3');
+        var gameStarted = false;
+        $("#new").show();
+        $(".card").hide();
+        $("#score").hide();
+        if (gameStarted === false) {
+            gameStarted = true;
+            $("#new").html("<h1 class='open'>Letterkenny Trivia</h1>" + "<div class='card mx-xs-10 mx-md-8 mx-auto mt-8 h-80 w-80 text-center' id='finalScore'>" + "<h1>Click here to start!</h1>" + "</div>");
+            $("#new").click(function () {
+                audio.play();
+                $("#new").hide();
+                $(".card").show();
+                $("#choices").empty();
+                $("#question").show();
+                $("#question").html(currentQuestion[0].question);
+                tenTimer();
+                trivia();
+            })
+        };
+    })
+};
 
 //10 second timer function checks if time is running already and sets the interval for count.
 function tenTimer() {
@@ -101,7 +120,7 @@ function nextQuestion() {
     $("#result").empty();
 
     if (questionCounter >= currentQuestion.length) {
-        $("#question").remove();
+        $("#question").hide();
         $("#image").empty();
         $("#timer").empty();
         gameOver();
@@ -177,9 +196,11 @@ function trivia() {
 
 //Displays the final score 
 function gameOver() {
-    $(".container").empty();
-    $(".container").html("<h1 class='open'>Letterkenny Trivia</h1>" + "<div class='card mx-xs-10 mx-md-8 mx-auto mt-8 h-80 w-80 text-center' id='finalScore'>" + "<h1>Your Score is " + score + "/5!</h1>" + "<button type='button' class='btn btn-info' id='restart'>Restart</button></div>");
+    $("#score").show();
+    $("#score").html("<h1 class='open'>Letterkenny Trivia</h1>" + "<div class='card mx-xs-10 mx-md-8 mx-auto mt-8 h-80 w-80 text-center' id='finalScore'>" + "<h1>Your Score is " + score + "/5!</h1>" + "<button type='button' class='btn btn-info' id='restart'>Restart</button></div>");
     $("#restart").click(function () {
-        window.location.reload(); //shhhh you saw nothing. I know the instructions say not to do this and I understand why, but it works as expected.
+        //window.location.reload(); //shhhh you saw nothing. I know the instructions say not to do this and I understand why, but it works as expected.
+        startGame();
     })
 };
+startGame();
