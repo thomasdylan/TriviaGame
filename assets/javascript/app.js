@@ -1,11 +1,3 @@
-/*
-    This code is far from clean or optimized.  
-    I am refactoring this, but that may not be done in time.  
-    The code works as intended, it just has a lot of extra functions acting as duct tape.
-    I tried to use single lines of jquery for dom manipulation as much as possible just to test myself, 
-      but understand that it is not very clean and there is more efficient ways of handling it.
-*/
-
 //Trivia questions with answers held in objects
 var q1 = {
     question: "Who is the toughest man in Letterkenny?",
@@ -199,7 +191,7 @@ function gameOver() {
     $("#score").show();
     $("#score").html("<h1 class='open'>Letterkenny Trivia</h1>" + "<div class='card mx-xs-10 mx-md-8 mx-auto mt-8 h-80 w-80 text-center' id='finalScore'>" + "<h1>Your Score is " + score + "/5!</h1>" + "<button type='button' class='btn btn-info' id='restart'>Restart</button></div>");
     $("#restart").click(function () {
-        //window.location.reload(); //shhhh you saw nothing. I know the instructions say not to do this and I understand why, but it works as expected.
+        //window.location.reload(); //shhhh you saw nothing. 
         startGame();
     })
 };
